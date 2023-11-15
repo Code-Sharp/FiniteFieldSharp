@@ -241,6 +241,81 @@ namespace FiniteFieldSharp
             return first.Field.Multiply(first, first.Field.Inverse(second));
         }
 
+        public static GaloisFieldElement operator +(int first, GaloisFieldElement second)
+        {
+            return (AsFieldElement(second, first) + second);
+        }
+
+        public static GaloisFieldElement operator +(GaloisFieldElement first, int second)
+        {
+            return first + AsFieldElement(first, second);
+        }
+
+        public static GaloisFieldElement operator -(int first, GaloisFieldElement second)
+        {
+            return (AsFieldElement(second, first) - second);
+        }
+
+        public static GaloisFieldElement operator -(GaloisFieldElement first, int second)
+        {
+            return first - AsFieldElement(first, second);
+        }
+
+        public static GaloisFieldElement operator *(int first, GaloisFieldElement second)
+        {
+            return (AsFieldElement(second, first) * second);
+        }
+
+        public static GaloisFieldElement operator *(GaloisFieldElement first, int second)
+        {
+            return first * AsFieldElement(first, second);
+        }
+
+        public static GaloisFieldElement operator /(int first, GaloisFieldElement second)
+        {
+            return (AsFieldElement(second, first) / second);
+        }
+
+        public static GaloisFieldElement operator /(GaloisFieldElement first, int second)
+        {
+            return first / AsFieldElement(first, second);
+        }
+
+        private static GaloisFieldElement AsFieldElement(GaloisFieldElement first, int second)
+        {
+            return new GaloisFieldElement(Enumerable.Repeat(0, first.Field.Degree - 1).Prepend(second).ToArray(), first.Field);
+        }
+
+        public static bool operator ==(GaloisFieldElement first, GaloisFieldElement second)
+        {
+            return EqualityComparer<GaloisFieldElement>.Default.Equals(first, second);
+        }
+
+        public static bool operator !=(GaloisFieldElement first, GaloisFieldElement second)
+        {
+            return !(first == second);
+        }
+
+        public static bool operator ==(GaloisFieldElement first, int second)
+        {
+            return EqualityComparer<GaloisFieldElement>.Default.Equals(first, AsFieldElement(first, second));
+        }
+
+        public static bool operator !=(GaloisFieldElement first, int second)
+        {
+            return !EqualityComparer<GaloisFieldElement>.Default.Equals(first, AsFieldElement(first, second));
+        }
+
+        public static bool operator ==(int first, GaloisFieldElement second)
+        {
+            return EqualityComparer<GaloisFieldElement>.Default.Equals(second, AsFieldElement(second, first));
+        }
+
+        public static bool operator !=(int second, GaloisFieldElement ss)
+        {
+            return !EqualityComparer<GaloisFieldElement>.Default.Equals(ss, AsFieldElement(ss, second));
+        }
+
         public bool Equals(GaloisFieldElement other)
         {
             return other != null &&
