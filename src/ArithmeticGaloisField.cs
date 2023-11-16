@@ -108,7 +108,7 @@
         {
             if (Characteristic == 2)
             {
-                return ~x;
+                return ~x % NumberOfElements;
             }
 
             int result = 0;
