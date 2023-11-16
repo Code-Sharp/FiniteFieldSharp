@@ -117,7 +117,7 @@ namespace FiniteFieldSharp
         {
             int result = value % prime;
 
-            if (value >= 0)
+            if (result >= 0)
             {
                 return result;
             }
