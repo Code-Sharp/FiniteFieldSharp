@@ -89,6 +89,11 @@ namespace FiniteFieldSharp
 
         public GaloisFieldElement Multiply(GaloisFieldElement x, GaloisFieldElement y)
         {
+            if (Zero.Equals(x) || Zero.Equals(y))
+            {
+                return this.Zero;
+            }
+
             int exponent = mLogarithmicTable[x] + mLogarithmicTable[y];
             exponent = Modulo(exponent, NumberOfElements - 1);
             return mExponentialTable[exponent];
