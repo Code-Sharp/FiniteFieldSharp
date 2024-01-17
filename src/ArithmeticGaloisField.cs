@@ -126,6 +126,11 @@
 
         public int Multiply(int x, int y)
         {
+            if (x == 0 || y == 0)
+            {
+                return 0;
+            }
+
             int exponent = mLogarithmicTable[x] + mLogarithmicTable[y];
             exponent = Modulo(exponent, NumberOfElements - 1);
             return mExponentialTable[exponent];
